@@ -19,3 +19,5 @@ class DPersona:
     def buscarProducto(self, nombre):
         consulta = (self.__db.table(self.__table).select('*').ilike('nombre', f'%{nombre}%'))
         return self.__ejecutarConsulta(consulta)
+    
+    def actualizarProducto(self, id_producto, nombre=None, precio=None, cantidad=None):
