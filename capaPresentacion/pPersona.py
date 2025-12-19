@@ -42,16 +42,16 @@ class PPersona:
                             st.session_state['carrito'].append(producto)
                             st.success(f"Producto '{producto['nombre']}' agregado al carrito.")
 
-                    st.subheader("Actualizar Producto")
-                    producto_id = st.selectbox("Selecciona un producto para actualizar", [p['id'] for p in datos])
+        st.subheader("Actualizar Producto")
+        producto_id = st.selectbox("Selecciona un producto para actualizar", [p['id'] for p in datos])
 
-                    nuevo_nombre = st.text_input("Nuevo nombre del producto")
-                    nuevo_precio = st.number_input("Nuevo precio del producto", min_value=0.0, step=0.01)
-                    nueva_cantidad = st.number_input("Nueva cantidad", min_value=0, step=1)
+        nuevo_nombre = st.text_input("Nuevo nombre del producto")
+        nuevo_precio = st.number_input("Nuevo precio del producto", min_value=0.0, step=0.01)
+        nueva_cantidad = st.number_input("Nueva cantidad", min_value=0, step=1)
 
-                    if st.button("Actualizar Producto"):
-                        resultado = self.__lPersona.actualizarProducto(producto_id, nuevo_nombre, nuevo_precio, nueva_cantidad)
-                        st.success(resultado)
+        if st.button("Actualizar Producto"):
+            resultado = self.__lPersona.actualizarProducto(producto_id, nuevo_nombre, nuevo_precio, nueva_cantidad)
+            st.success(resultado)
 
         if st.session_state['carrito']:
             st.subheader("Carrito de Compras")
