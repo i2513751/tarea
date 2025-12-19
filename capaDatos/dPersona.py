@@ -28,3 +28,15 @@ class DPersona:
             datos_actualizados['precio'] = precio
         if cantidad:
             datos_actualizados['cantidad'] = cantidad
+        if datos_actualizados:
+            try:
+                consulta = self.__db.table(self.__table).update(datos_actualizados).eq('id', id_producto)
+                resultado = consulta.execute()
+                if resultado.status_code == 200:
+                    return f"Producto con ID {id_producto} actualizado exitosamente."
+                else:
+                    return f"Error al actualizar el producto con ID {id_producto}."
+            except Exception as e:
+                return f"Error al actualizar el producto: {e}"
+        else:
+            return "No se proporcionaron datos para actualizar."
