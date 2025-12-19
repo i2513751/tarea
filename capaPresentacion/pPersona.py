@@ -43,38 +43,27 @@ class PPersona:
 
 import streamlit as st
 
-# Lista de productos
+# Título de la página
+st.title("Bienvenidos a nuestra Tienda Online")
+
+# Sección de catálogo
+st.header("Catálogo de Productos")
+st.write("Aquí puedes encontrar nuestros productos disponibles:")
+
+# Lista de productos para mostrar visualmente
 productos = [
-    {"id": 1, "nombre": "Cargador VEX 3.1A", "precio": 25},
-    {"id": 2, "nombre": "Cable USB Tipo C 1m", "precio": 12},
-    {"id": 3, "nombre": "Funda Shockproof A03", "precio": 18},
+    {"nombre": "Cargador VEX 3.1A", "precio": 25, "descripcion": "Cargador rápido USB + USB-C"},
+    {"nombre": "Cable USB Tipo C 1m", "precio": 12, "descripcion": "Cable de alta durabilidad"},
+    {"nombre": "Funda Shockproof A03", "precio": 18, "descripcion": "Funda resistente a golpes"},
 ]
 
-# Inicializar carrito si no existe
-if "carrito" not in st.session_state:
-    st.session_state.carrito = []
-
-# Función para agregar al carrito
-def agregar_al_carrito(producto):
-    st.session_state.carrito.append(producto)
-
-# Mostrar carrito en la barra lateral
-st.sidebar.header("Carrito")
-st.sidebar.write(f"Total productos en el carrito: {len(st.session_state.carrito)}")
-if len(st.session_state.carrito) > 0:
-    for item in st.session_state.carrito:
-        st.sidebar.write(f"- {item['nombre']} - S/ {item['precio']}")
-
 # Mostrar productos
-st.title("CATÁLOGO DE PRODUCTOS")
 for producto in productos:
-    col1, col2 = st.columns([3, 1])
-    
-    with col1:
-        st.write(f"**{producto['nombre']}** - S/ {producto['precio']}")
-    with col2:
-        # Botón de "Agregar" para cada producto
-        if st.button(f"Agregar {producto['nombre']}", key=producto['id']):
-            agregar_al_carrito(producto)
-            st.success(f"{producto['nombre']} agregado al carrito")
+    st.subheader(f"{producto['nombre']} - S/ {producto['precio']}")
+    st.write(f"Descripción: {producto['descripcion']}")
+    st.write("------")
 
+# Barra lateral
+st.sidebar.header("Información adicional")
+st.sidebar.write("Visítanos para más productos y promociones.")
+st.sidebar.image("https://via.placeholder.com/150", caption="Tienda Online")
