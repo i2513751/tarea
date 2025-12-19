@@ -16,7 +16,7 @@ class PPersona:
             cantidad = len(st.session_state['carrito'])
             st.markdown(f"""<div style="text-align:right; font-size:22px; font-weight:600;"> 🛒 {cantidad}</div>""",unsafe_allow_html=True)
 
-        st.title("CATALOGO DE PRODUCTOS")
+      
         st.subheader("Buscar producto por nombre")
 
         with st.form("form_busqueda"):
@@ -55,7 +55,18 @@ productos = [
     {"nombre": "Cargador VEX 3.1A", "precio": 25, "descripcion": "Cargador rápido USB + USB-C"},
     {"nombre": "Cable USB Tipo C 1m", "precio": 12, "descripcion": "Cable de alta durabilidad"},
     {"nombre": "Funda Shockproof A03", "precio": 18, "descripcion": "Funda resistente a golpes"},
+    {"nombre": "Cargador VEX 3.1A", "precio": 25, "descripcion": "Cargador rápido USB + USB-C"},
+    {"nombre": "Cable USB Tipo C 1m", "precio": 12, "descripcion": "Cable de alta durabilidad"},
+    {"nombre": "Funda Shockproof A03", "precio": 18, "descripcion": "Funda resistente a golpes"},
+    {"nombre": "Auriculares Bluetooth X7", "precio": 30, "descripcion": "Auriculares con sonido HD y batería de 12 horas"},
+    {"nombre": "Batería Externa PowerBank 10,000mAh", "precio": 45, "descripcion": "Batería externa de alta capacidad para dispositivos móviles"},
+    {"nombre": "Soporte para Teléfono Universal", "precio": 15, "descripcion": "Soporte ajustable para todo tipo de teléfonos"},
+    {"nombre": "Protector de Pantalla 9H", "precio": 8, "descripcion": "Protector de vidrio templado para smartphones"},
+    {"nombre": "Funda de Silicona para iPhone 12", "precio": 20, "descripcion": "Funda suave y resistente para iPhone 12"},
+    {"nombre": "Teclado Bluetooth Portátil", "precio": 35, "descripcion": "Teclado bluetooth compacto y ligero para tablets y smartphones"},
+    {"nombre": "Mochila Antirrobo para Laptop", "precio": 70, "descripcion": "Mochila con compartimentos seguros y protección para laptops"}
 ]
+
 
 # Mostrar productos
 for producto in productos:
