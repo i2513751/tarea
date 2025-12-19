@@ -42,19 +42,15 @@ class PPersona:
         st.dataframe(resultado)
 
 import streamlit as st
-import pandas as pd
 
 # Lista de productos
 productos = [
-    {"id": 1, "nombre": "Cargador VEX 3.1A", "precio": 25, "descripcion": "Cargador rápido USB + USB-C", "imagen": "https://via.placeholder.com/150"},
-    {"id": 2, "nombre": "Cable USB Tipo C 1m", "precio": 12, "descripcion": "Cable de alta durabilidad", "imagen": "https://via.placeholder.com/150"},
-    {"id": 3, "nombre": "Funda Shockproof A03", "precio": 18, "descripcion": "Funda anti-impactos resistente", "imagen": "https://via.placeholder.com/150"},
-    {"id": 4, "nombre": "Vidrio Templado 9D", "precio": 10, "descripcion": "Protector de pantalla ultra resistente", "imagen": "https://via.placeholder.com/150"},
-    {"id": 5, "nombre": "Auriculares Bluetooth X7", "precio": 30, "descripcion": "Sonido HD y batería 12h", "imagen": "https://via.placeholder.com/150"},
-    {"id": 6, "nombre": "Cargador Turbo 25W", "precio": 35, "descripcion": "Carga rápida para Samsung y Android", "imagen": "https://via.placeholder.com/150"},
+    {"id": 1, "nombre": "Cargador VEX 3.1A", "precio": 25},
+    {"id": 2, "nombre": "Cable USB Tipo C 1m", "precio": 12},
+    {"id": 3, "nombre": "Funda Shockproof A03", "precio": 18},
 ]
 
-# Inicializar carrito
+# Inicializar carrito si no existe
 if "carrito" not in st.session_state:
     st.session_state.carrito = []
 
@@ -64,31 +60,21 @@ def agregar_al_carrito(producto):
 
 # Mostrar carrito en la barra lateral
 st.sidebar.header("Carrito")
-st.sidebar.write(f"Productos en el carrito: {len(st.session_state.carrito)}")
+st.sidebar.write(f"Total productos en el carrito: {len(st.session_state.carrito)}")
 if len(st.session_state.carrito) > 0:
     for item in st.session_state.carrito:
         st.sidebar.write(f"- {item['nombre']} - S/ {item['precio']}")
 
-# Convertir la lista de productos en un DataFrame para mostrar en tabla
-df = pd.DataFrame(productos)
-
-# Mostrar la tabla de productos con un botón "Agregar" en cada fila
+# Mostrar productos
 st.title("CATÁLOGO DE PRODUCTOS")
-for index, row in df.iterrows():
-    # Mostrar información del producto
-    col1, col2, col3, col4 = st.columns([2, 1, 3, 1])
+for producto in productos:
+    col1, col2 = st.columns([3, 1])
     
     with col1:
-        st.image(row['imagen'], use_column_width=True)
+        st.write(f"**{producto['nombre']}** - S/ {producto['precio']}")
     with col2:
-        st.write(f"**{row['nombre']}**")
-        st.write(f"Precio: S/ {row['precio']}")
-        st.write(row['descripcion'])
-    with col3:
-        # Botón para agregar el producto al carrito
-        if st.button(f"Agregar {row['nombre']}", key=row['id']):
-            agregar_al_carrito(row)
-            st.success(f"{row['nombre']} agregado al carrito")
+        # Botón de "Agregar" para cada producto
+        if st.button(f"Agregar {producto['nombre']}", key=producto['id']):
+            agregar_al_carrito(producto)
+            st.success(f"{producto['nombre']} agregado al carrito")
 
-# Mostrar el número de productos en el carrito en la parte superior derecha
-st.sidebar.write(f"Total productos en el carrito: {len(st.session_state.carrito)}")
