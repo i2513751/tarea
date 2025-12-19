@@ -42,6 +42,7 @@ class PPersona:
         st.dataframe(resultado)
 
 import streamlit as st
+import pandas as pd
 
 # Lista de productos (puedes actualizarla según lo necesites)
 productos = [
@@ -51,7 +52,6 @@ productos = [
     {"id": 4, "nombre": "Vidrio Templado 9D", "precio": 10, "descripcion": "Protector de pantalla ultra resistente", "imagen": "https://via.placeholder.com/150"},
     {"id": 5, "nombre": "Auriculares Bluetooth X7", "precio": 30, "descripcion": "Sonido HD y batería 12h", "imagen": "https://via.placeholder.com/150"},
     {"id": 6, "nombre": "Cargador Turbo 25W", "precio": 35, "descripcion": "Carga rápida para Samsung y Android", "imagen": "https://via.placeholder.com/150"},
-    # Agregar más productos aquí si es necesario
 ]
 
 # Inicializar carrito
@@ -69,18 +69,20 @@ if len(st.session_state.carrito) > 0:
     for item in st.session_state.carrito:
         st.sidebar.write(f"- {item['nombre']} - S/ {item['precio']}")
 
-# Mostrar los productos y agregar botones
+# Mostrar los productos con los botones dentro de la tabla
 st.title("CATÁLOGO DE PRODUCTOS")
 for producto in productos:
-    col1, col2 = st.columns([3, 1])
+    col1, col2, col3 = st.columns([3, 1, 1])
+    
     with col1:
         st.image(producto["imagen"], use_column_width=True)
         st.write(f"**{producto['nombre']}**")
         st.write(f"Precio: S/ {producto['precio']}")
         st.write(producto["descripcion"])
-    
+
     with col2:
-        if st.button(f"Agregar {producto['nombre']} al carrito", key=producto["id"]):
+        # Agregar botón de "Agregar al carrito"
+        if st.button(f"Agregar {producto['nombre']}", key=producto["id"]):
             agregar_al_carrito(producto)
             st.success(f"{producto['nombre']} agregado al carrito")
 
