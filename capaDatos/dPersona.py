@@ -21,3 +21,10 @@ class DPersona:
         return self.__ejecutarConsulta(consulta)
     
     def actualizarProducto(self, id_producto, nombre=None, precio=None, cantidad=None):
+        datos_actualizados = {}
+        if nombre:
+            datos_actualizados['nombre'] = nombre
+        if precio:
+            datos_actualizados['precio'] = precio
+        if cantidad:
+            datos_actualizados['cantidad'] = cantidad
